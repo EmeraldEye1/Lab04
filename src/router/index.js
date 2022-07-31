@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import EventListView from '../views/EventListView.vue'
 import AboutView from '../views/AboutView.vue'
-
 // import EventDetails from '../views/EventDetailView.vue'
 import EventDetails from '@/views/event/EventDetailView.vue'
 import EventRegister from '@/views/event/EventRegister.vue'
 import EventEdit from '@/views/event/EditView.vue'
 import Eventlayout from '@/views/event/EventLayoutView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
+import NetWorkError from '@/views/NetworkErrorView.vue'
 const routes = [
   {
     path: '/',
@@ -22,10 +23,8 @@ const routes = [
     name: 'about',
     component: AboutView
   },
-
   {
     path: '/event/:id',
-
     name: 'EventLayout',
     props: true,
     component: Eventlayout,
@@ -50,6 +49,22 @@ const routes = [
     ]
   },
   {
+    path: '/404/:resource',
+    name: '404Resource',
+    component: NotFoundView,
+    props: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFoundView
+  },
+  {
+    path: '/network-error',
+    name: 'NetworkError',
+    component: NetWorkError
+  },
+  {
     path: '/event/:id/register',
     name: 'EventRegister',
     props: true,
@@ -62,7 +77,6 @@ const routes = [
     component: EventEdit
   }
 ]
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
